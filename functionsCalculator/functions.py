@@ -8,37 +8,63 @@ class Functions():
         self.result = 0
         self.screenNumber = StringVar()
 
-    #----------------------------pulsaciones teclado-----------
-
-    def numeroPulsado(self, num: str):
-        global operation
-
+    #----------------------------key pressed method-----------
+    def number_pressed(self, num: str):
         if self.operation != "":
             self.screenNumber.set(num)
-            operation = ""
+            if self.result == 0:
+                self.operation = ""
         else:
             self.screenNumber.set(self.screenNumber.get() + num)
-            
-    #-----------------------función suma-----------------------
-    def suma(self, num):
-        # global operation
-        # global result
-        self.result += int(num)
-        self.operation = "suma"
+
+    #-----------------------addition method-----------------------
+    def addition(self, num):
+        if self.result != 0:
+            self.acumulated_result(num)
+        else:
+            self.result += int(num)
+            self.operation = "addition"
         self.screenNumber.set(self.result)
 
-    #-------- sustraction method-----------
-    def sustraction(self, num):
-        self.result += int(num)
-        self.operation = "sustraction"
+    #-----------------------sustraction method-----------------
+    def subtraction(self, num):
+        if self.result != 0:
+            self.acumulated_result(num)
+        else:
+            self.result += int(num)
+            self.operation = "subtraction"
         self.screenNumber.set(self.result)
 
-    #------------Función el_resultado----------------------------
-    def el_resultado(self):
-        #global result
-        if self.operation == "suma":
+    #-----------------------multiplication method--------------
+    def multiplication(self, num):
+        if self.result != 0:
+            self.acumulated_result(num)
+        else:
+            self.result += int(num)
+            self.operation = "multiplication"
+        self.screenNumber.set(self.result)
+
+    #-----------------------division method--------------------
+    def division(self, num):
+        pass
+    
+    #----------------------result acumulated method-------------
+    def acumulated_result(self, num):
+        if self.operation == "addition":
+            self.result += int(num)
+        elif self.operation == "subtraction":
+            self.result -= int(num)
+            #self.screenNumber.get()
+        elif self.operation == "multiplication":
+            self.result *= int(num)
+        #elif self.operation == ""
+
+    #----------------------the_result method------------------
+    def the_result(self):
+        if self.operation == "addition":
             self.screenNumber.set(self.result + int(self.screenNumber.get()))
-        elif self.operation == "sustraction":
+        elif self.operation == "subtraction":
             self.screenNumber.set(self.result - int(self.screenNumber.get()))
-
+        if self.operation == "multiplication":
+            self.screenNumber.set(self.result * int(self.screenNumber.get()))
         self.result = 0
