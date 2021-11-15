@@ -75,7 +75,7 @@ button_2 = Button(myFrame, text="2", pady=10, width=3, command=lambda:functions_
 button_2.grid(row=4, column=2)
 button_3 = Button(myFrame, text="3", pady=10, width=3, command=lambda:functions_pack.numeroPulsado("3"))
 button_3.grid(row=4, column=3)
-button_rest = Button(myFrame, text="-", pady=10, width=3)
+button_rest = Button(myFrame, text="-", pady=10, width=3, command=lambda:functions_pack.sustraction(functions_pack.screenNumber.get()))
 button_rest.grid(row=4, column=4)
 
 #-------------------Fila 4----------------------------------
@@ -91,4 +91,7 @@ button_sum.grid(row=5, column=4)
 
 #-------función aparición de números en pantalla al presionarlos--------
 
-root.mainloop()
+
+if __name__ == "__main__":
+
+    root.mainloop()

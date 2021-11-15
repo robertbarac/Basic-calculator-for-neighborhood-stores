@@ -29,12 +29,16 @@ class Functions():
 
     #-------- sustraction method-----------
     def sustraction(self, num):
-        self.result -= int(num)
+        self.result += int(num)
         self.operation = "sustraction"
+        self.screenNumber.set(self.result)
 
     #------------Función el_resultado----------------------------
     def el_resultado(self):
-        global result
-        self.screenNumber.set(self.result + int(self.screenNumber.get()))
+        #global result
+        if self.operation == "suma":
+            self.screenNumber.set(self.result + int(self.screenNumber.get()))
+        elif self.operation == "sustraction":
+            self.screenNumber.set(self.result - int(self.screenNumber.get()))
 
         self.result = 0
