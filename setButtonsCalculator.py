@@ -53,7 +53,7 @@ button_8 = Button(myFrame, text="8", pady=10, width=3, command=lambda:functions_
 button_8.grid(row=2, column=2)
 button_9 = Button(myFrame, text="9", pady=10, width=3, command=lambda:functions_pack.number_pressed("9"))
 button_9.grid(row=2, column=3)
-button_div = Button(myFrame, text="/", pady=10, width=3)
+button_div = Button(myFrame, text="÷", pady=10, width=3, command=lambda:functions_pack.division(functions_pack.screenNumber.get()))
 button_div.grid(row=2, column=4)
 
 #-------------------Row 2----------------------------------

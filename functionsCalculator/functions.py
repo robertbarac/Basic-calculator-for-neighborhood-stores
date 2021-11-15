@@ -22,8 +22,11 @@ class Functions():
         if self.result != 0:
             self.acumulated_result(num)
         else:
-            self.result += int(num)
-            self.operation = "addition"
+            if type(self.result) == 'int':
+                self.result += int(num)
+            else:
+                self.result += float(num)
+        self.operation = "addition"
         self.screenNumber.set(self.result)
 
     #-----------------------sustraction method-----------------
@@ -32,7 +35,7 @@ class Functions():
             self.acumulated_result(num)
         else:
             self.result += int(num)
-            self.operation = "subtraction"
+        self.operation = "subtraction"
         self.screenNumber.set(self.result)
 
     #-----------------------multiplication method--------------
@@ -41,23 +44,32 @@ class Functions():
             self.acumulated_result(num)
         else:
             self.result += int(num)
-            self.operation = "multiplication"
+        self.operation = "multiplication"
         self.screenNumber.set(self.result)
 
     #-----------------------division method--------------------
     def division(self, num):
-        pass
+        if self.result != 0:
+            self.acumulated_result(num)
+        else:
+            self.result += int(num)
+        self.operation = "division"
+        self.screenNumber.set(self.result)
     
     #----------------------result acumulated method-------------
     def acumulated_result(self, num):
         if self.operation == "addition":
-            self.result += int(num)
+            if self.is_int():
+                self.result += int(num)
+            else:
+                self.result += float(num)
         elif self.operation == "subtraction":
             self.result -= int(num)
             #self.screenNumber.get()
         elif self.operation == "multiplication":
             self.result *= int(num)
-        #elif self.operation == ""
+        elif self.operation == "division":
+            self.result /= int(num)
 
     #----------------------the_result method------------------
     def the_result(self):
@@ -65,6 +77,14 @@ class Functions():
             self.screenNumber.set(self.result + int(self.screenNumber.get()))
         elif self.operation == "subtraction":
             self.screenNumber.set(self.result - int(self.screenNumber.get()))
-        if self.operation == "multiplication":
+        elif self.operation == "multiplication":
             self.screenNumber.set(self.result * int(self.screenNumber.get()))
+        elif self.operation == "division":
+            if self.result % int(self.screenNumber.get()) == 0:
+                self.screenNumber.set(int(self.result / int(self.screenNumber.get())))
+            else:
+                self.screenNumber.set(self.result / int(self.screenNumber.get()))
         self.result = 0
+
+    def is_int(self):
+        return True if type(self.result) == 'int' else 'float'
