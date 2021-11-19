@@ -10,13 +10,13 @@ class Functions():
 
     #----------------------------key pressed method-----------
     def number_pressed(self, num: str):
-        pass
-        # if self.operation != "":
-        #     self.screenNumber.set(num)
-        #     if self.result == 0:
-        #         self.operation = ""
-        # else:
-        #     self.screenNumber.set(self.screenNumber.get() + num)
+        #pass
+        if self.operation != "":
+            self.screenNumber.set(num)
+            if self.result == 0:
+                self.operation = ""
+        else:
+            self.screenNumber.set(self.screenNumber.get() + num)
 
     #-----------------------addition method-----------------------
     def addition(self, num):
@@ -122,8 +122,8 @@ class Functions():
         pass
 
     def clear_screen(self):
-        # self.screenNumber.set('0')
-        pass
+        self.screenNumber.set('')
+        #pass
 
     def clear_all(self):
         # self.screenNumber.set('0')

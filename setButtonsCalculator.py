@@ -53,7 +53,7 @@ button_div.grid(row=3, column=6)
 
 #-------------------Row 3----------------------------------
 
-clear_button = Button(myFrame, text="C", pady=10, width=3)
+clear_button = Button(myFrame, text="C", pady=10, width=3, command=lambda:functions_pack.clear_screen())
 clear_button.grid(row=4, column=1)
 button_1 = Button(myFrame, text="1", pady=10, width=3, command=lambda:functions_pack.number_pressed("1"))
 button_1.grid(row=4, column=2)
