@@ -6,17 +6,27 @@ class Functions():
         self.operation:str = ""
         self.result = 0
         self.screenNumber = StringVar()
-        #self.position = 0
+        self.screenNumber.set("0")
 
     #----------------------------key pressed method-----------
     def number_pressed(self, num: str):
-        #pass
+        #Initial case: 0 in screen, numeric key pressed is 0 or 00
+        if (num == "0" and self.screenNumber.get() == "0") or (num == "00" and self.screenNumber.get() == "0"):
+            pass
+
+        #Initial case: 0 in screen, numeric key pressed different of 0 and 00
+        elif self.screenNumber.get() == "0":
+            self.screenNumber.set(num)
+
+        #There is a number different of 0 in screen
+        elif self.screenNumber.get() != "0":
+            self.screenNumber.set(self.screenNumber.get() + num)
+        
+        #Reset the number in screen if any numeric key is pressed and if there is a mathematic operation in process
         if self.operation != "":
             self.screenNumber.set(num)
             if self.result == 0:
                 self.operation = ""
-        else:
-            self.screenNumber.set(self.screenNumber.get() + num)
 
     #-----------------------addition method-----------------------
     def addition(self, num):
@@ -122,7 +132,7 @@ class Functions():
         pass
 
     def clear_screen(self):
-        self.screenNumber.set('')
+        self.screenNumber.set('0')
         #pass
 
     def clear_all(self):
