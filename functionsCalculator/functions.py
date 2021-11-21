@@ -34,7 +34,7 @@ class Functions():
 
         #There is a number different of 0 in screen
         elif self.screenNumber.get() != "0" and self.result == 0:
-            print("por aquí")
+            # print("por aquí")
             self.screenNumber.set(self.screenNumber.get() + num)
         
         #Reset the number in screen if any numeric key is pressed and if there is a mathematic operation in process
@@ -45,8 +45,8 @@ class Functions():
                 self.screenNumber.set(num)
                 self.flag_screen = False
             elif self.flag_result != self.flag_screen:
-                print("por acá")
-                print(self.result)
+                # print("por acá")
+                # print(self.result)
                 self.screenNumber.set(self.screenNumber.get() + num)
             if self.result == 0:
                 self.operation = ""
@@ -65,19 +65,21 @@ class Functions():
             else:
                 self.result += float(self.screenNumber.get())
                 self.flag_result = True
-        #pass
 
     #-----------------------sustraction method-----------------
     def subtraction(self, num):
-        # self.operation = "subtraction"
-        # if self.result != 0:
-        #     self.acumulated_result(num)
-        # else:
-        #     if self.screen_number_is_int():
-        #         self.result += int(self.screenNumber.get())
-        #     else:
-        #         self.result += float(self.screenNumber.get())
-        pass
+        self.flag_screen = True
+        self.operation = "subtraction"
+        if self.result != 0:
+            self.acumulated_result(num)
+        else:
+            if self.screen_number_is_int():
+                self.result += int(self.screenNumber.get())
+                self.flag_result = True
+            else:
+                self.result += float(self.screenNumber.get())
+                self.flag_result = True
+        #pass
 
     #-----------------------multiplication method--------------
     def multiplication(self, num):
@@ -111,9 +113,13 @@ class Functions():
             else:
                 self.result += float(num)
                 self.flag_result = True
-        # elif self.operation == "subtraction":
-        #     self.result -= int(num)
-        #     #self.screenNumber.get()
+        elif self.operation == "subtraction":
+            if self.result_is_int():
+                self.result -= int(num)
+                self.flag_result = True
+            else:
+                self.result -= float(num)
+                self.flag_result = True
         # elif self.operation == "multiplication":
         #     self.result *= float(num)
         # elif self.operation == "division":
@@ -136,18 +142,22 @@ class Functions():
                 self.screenNumber.set(self.result)
                 self.flag_result = True
             
-        # elif self.operation == "subtraction":
-        #     self.result -= float(self.screenNumber.get())
-        #     if len(str(self.result)[str(self.result).find('.'):len(str(self.result)) + 1]) == 2 and (str(self.result)[str(self.result).find('.') + 1] == '0'):
-        #         self.screenNumber.set(round(self.result))
-        #     else:
-        #         self.screenNumber.set(self.result)
+        elif self.operation == "subtraction":
+            self.result -= float(self.screenNumber.get())
+            if len(str(self.result)[str(self.result).find('.'):len(str(self.result)) + 1]) == 2 and (str(self.result)[str(self.result).find('.') + 1] == '0'):
+                self.screenNumber.set(round(self.result))
+                self.flag_result = True
+            else:
+                self.screenNumber.set(self.result)
+                self.flag_result = True
         # elif self.operation == "multiplication":
         #     self.result = self.result * float(self.result * float(self.screenNumber.get()))
         #     if len(str(self.result)[str(self.result).find('.'):len(str(self.result)) + 1]) == 2 and (str(self.result)[str(self.result).find('.') + 1] == '0'):
         #         self.screenNumber.set(round(self.result))
+        #         self.flag_result = True
         #     else:
         #         self.screenNumber.set(self.result)
+        #         self.flag_result = True
             
         # elif self.operation == "division":
         #     self.result /= float(self.screenNumber.get())
@@ -170,11 +180,15 @@ class Functions():
         self.new_number:str = self.old_number[:-1]
         self.screenNumber.set(self.new_number)
 
-        # pass
+    def negative_or_positive_number(self):
+        self.string:str = self.screenNumber.get()
+        if self.string[0] == '-':
+            self.screenNumber.set(self.string[1:])
+        else:
+            self.screenNumber.set('-' + self.string)
 
     def clear_screen(self):
         self.screenNumber.set('')
-        #pass
 
     def clear_all(self):
         self.screenNumber.set('0')

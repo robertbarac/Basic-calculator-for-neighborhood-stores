@@ -19,7 +19,7 @@ class Calculator():
 
         #-------------------Row 1----------------------------------
 
-        mor_less_button = Button(myFrame, text= '+/-', pady=10, width=3)
+        mor_less_button = Button(myFrame, text= '+/-', pady=10, width=3, command=lambda:functions_pack.negative_or_positive_number())
         mor_less_button.grid(row=2, column=1)
         button_7 = Button(myFrame, text="7", pady=10, width=3, command=lambda:functions_pack.number_pressed("7"))
         button_7.grid(row=2, column=2)
