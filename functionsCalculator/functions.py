@@ -15,6 +15,17 @@ class Functions():
         #Initial case: 0 in screen, numeric key pressed is 0 or 00
         if (num == "0" and self.screenNumber.get() == "0") or (num == "00" and self.screenNumber.get() == "0"):
             pass
+        #if
+        elif num == '.' and self.screenNumber.get() == '0':
+            self.screenNumber.set(self.screenNumber.get + num)
+        #there is in the screen a number diferent to zero
+        elif num == '.' and self.screenNumber.get() != '0':
+            #there is a dot in the screen
+            if '.' in self.screenNumber.get():
+                pass
+            #there is no a dot in the screen, add the dot in the screen
+            else:
+                self.screenNumber.set(self.screenNumber.get() + num)
         elif self.screenNumber.get() == "":
             self.screenNumber.set(num)
         #Initial case: 0 in screen, numeric key pressed different of 0 and 00
@@ -49,10 +60,10 @@ class Functions():
             self.acumulated_result(num)
         else:
             if self.screen_number_is_int():
-                self.result += float(self.screenNumber.get())
+                self.result += int(self.screenNumber.get())
                 self.flag_result = True
             else:
-                self.result += int(self.screenNumber.get())
+                self.result += float(self.screenNumber.get())
                 self.flag_result = True
         #pass
 
@@ -113,7 +124,10 @@ class Functions():
     def the_result(self):
         if self.result == 0:
             pass
-        if self.operation == "addition":
+        elif self.operation == "":
+            self.acumulated_result(float(self.screenNumber.get()))
+            self.screenNumber.set(self.result)
+        elif self.operation == "addition":
             self.result += float(self.screenNumber.get())
             if len(str(self.result)[str(self.result).find('.'):len(str(self.result)) + 1]) == 2 and (str(self.result)[str(self.result).find('.') + 1] == '0'):
                 self.screenNumber.set(round(self.result))
@@ -143,7 +157,7 @@ class Functions():
         #         self.screenNumber.set(self.result)
         self.result = 0
         #self.operation = ''
-        pass
+        #pass
 
     def result_is_int(self):
         return True if type(self.result) == 'int' else False
@@ -152,7 +166,11 @@ class Functions():
         return False if '.' in str(self.screenNumber.get()) else True
 
     def delete_last_number(self):
-        pass
+        self.old_number:str = self.screenNumber.get()
+        self.new_number:str = self.old_number[:-1]
+        self.screenNumber.set(self.new_number)
+
+        # pass
 
     def clear_screen(self):
         self.screenNumber.set('')
