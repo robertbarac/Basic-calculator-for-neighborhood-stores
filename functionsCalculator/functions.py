@@ -15,7 +15,6 @@ class Functions():
         #Initial case: 0 in screen, numeric key pressed is 0 or 00
         if (num == "0" and self.screenNumber.get() == "0") or (num == "00" and self.screenNumber.get() == "0"):
             pass
-        #if
         elif num == '.' and self.screenNumber.get() == '0':
             self.screenNumber.set(self.screenNumber.get + num)
         #there is in the screen a number diferent to zero
@@ -34,9 +33,8 @@ class Functions():
 
         #There is a number different of 0 in screen
         elif self.screenNumber.get() != "0" and self.result == 0:
-            # print("por aquí")
             self.screenNumber.set(self.screenNumber.get() + num)
-        
+
         #Reset the number in screen if any numeric key is pressed and if there is a mathematic operation in process
         elif self.operation != "":
             if self.screenNumber.get() == "0":
@@ -45,8 +43,6 @@ class Functions():
                 self.screenNumber.set(num)
                 self.flag_screen = False
             elif self.flag_result != self.flag_screen:
-                # print("por acá")
-                # print(self.result)
                 self.screenNumber.set(self.screenNumber.get() + num)
             if self.result == 0:
                 self.operation = ""
@@ -55,83 +51,112 @@ class Functions():
     #-----------------------addition method-----------------------
     def addition(self, num:str):
         self.flag_screen = True
-        self.operation = "addition"
-        if self.result != 0:
-            self.acumulated_result(num)
-        else:
-            if self.screen_number_is_int():
-                self.result += int(self.screenNumber.get())
-                self.flag_result = True
-            else:
+        if self.operation == '':
+            if self.result == 0:
                 self.result += float(self.screenNumber.get())
-                self.flag_result = True
+            self.operation == 'addition'
+        elif self.operation == 'addition':
+            self.result += float(self.screenNumber.get())
+        elif self. operation == 'subtraction':
+            self.result -= float(self.screenNumber.get())
+        elif self. operation == 'multiplication':
+            self.result *= float(self.screenNumber.get())
+        elif self. operation == 'division':
+            self.result /= float(self.screenNumber.get())
+        if len(str(self.result)[str(self.result).find('.'):len(str(self.result)) + 1]) == 2 and (str(self.result)[str(self.result).find('.') + 1] == '0'):
+            self.result = int(self.result)
+            self.screenNumber.set(self.result)
+            self.flag_result = True
+        else:
+            self.screenNumber.set(self.result)
+            self.flag_result = True
+        self.operation = "addition"
+
 
     #-----------------------sustraction method-----------------
     def subtraction(self, num):
         self.flag_screen = True
-        self.operation = "subtraction"
-        if self.result != 0:
-            self.acumulated_result(num)
-        else:
-            if self.screen_number_is_int():
-                self.result += int(self.screenNumber.get())
-                self.flag_result = True
-            else:
+        if self.operation == '':
+            if self.result == 0:
                 self.result += float(self.screenNumber.get())
-                self.flag_result = True
-        #pass
+            self.operation = 'subtraction'
+            #self.result += float(self.screenNumber.get())
+        elif self.operation == 'addition':
+            self.result += float(self.screenNumber.get())
+        elif self. operation == 'subtraction':
+            self.result -= float(self.screenNumber.get())
+        elif self. operation == 'multiplication':
+            self.result *= float(self.screenNumber.get())
+        elif self. operation == 'division':
+            self.result /= float(self.screenNumber.get())
+
+        if len(str(self.result)[str(self.result).find('.'):len(str(self.result)) + 1]) == 2 and (str(self.result)[str(self.result).find('.') + 1] == '0'):
+            self.result = int(self.result)
+            self.screenNumber.set(self.result)
+            self.flag_result = True
+        else:
+            self.screenNumber.set(self.result)
+            self.flag_result = True
+
+        self.operation = "subtraction"
+
 
     #-----------------------multiplication method--------------
     def multiplication(self, num):
-        # self.operation = "multiplication"
-        # if self.result != 0:
-        #     self.acumulated_result(num)
-        # else:
-        #     if self.screen_number_is_int():
-        #         self.result += float(self.screenNumber.get())
-        #     else:
-        #         self.result += int(self.screenNumber.get())
-        pass
+        self.flag_screen = True
+        if self.operation == '':
+            if self.result == 0:
+                self.result += float(self.screenNumber.get())
+            self.operation = 'multiplication'
+        elif self.operation == 'addition':
+            self.result += float(self.screenNumber.get())
+        elif self. operation == 'subtraction':
+            self.result -= float(self.screenNumber.get())
+        elif self. operation == 'multiplication':
+            self.result *= float(self.screenNumber.get())
+        elif self. operation == 'division':
+            self.result /= float(self.screenNumber.get())
+        if len(str(self.result)[str(self.result).find('.'):len(str(self.result)) + 1]) == 2 and (str(self.result)[str(self.result).find('.') + 1] == '0'):
+            self.result = int(self.result)
+            self.screenNumber.set(self.result)
+            self.flag_result = True
+        else:
+            self.screenNumber.set(self.result)
+            self.flag_result = True
+
+        self.operation = "multiplication"
 
     #-----------------------division method--------------------
     def division(self, num):
-        # self.operation = "division"
-        # if self.result != 0:
-        #     self.acumulated_result(num)
-        # else:
-        #     if self.screen_number_is_int():
-        #         self.result += float(self.screenNumber.get())
-        #     else:
-        #         self.result += int(self.screenNumber.get())
-        pass
-    #----------------------result acumulated method-------------
-    def acumulated_result(self, num):
-        if self.operation == "addition":
-            if self.result_is_int():
-                self.result += int(num)
-                self.flag_result = True
-            else:
-                self.result += float(num)
-                self.flag_result = True
-        elif self.operation == "subtraction":
-            if self.result_is_int():
-                self.result -= int(num)
-                self.flag_result = True
-            else:
-                self.result -= float(num)
-                self.flag_result = True
-        # elif self.operation == "multiplication":
-        #     self.result *= float(num)
-        # elif self.operation == "division":
-        #     self.result /= float(num)
-        #pass
+        self.flag_screen = True
+        if self.operation == '':
+            if self.result == 0:
+                self.result += float(self.screenNumber.get())
+                self.operation = "division"
+        elif self.operation == 'addition':
+            self.result += float(self.screenNumber.get())
+        elif self. operation == 'subtraction':
+            self.result -= float(self.screenNumber.get())
+        elif self. operation == 'multiplication':
+            self.result *= float(self.screenNumber.get())
+        elif self. operation == 'division':
+            self.result /= float(self.screenNumber.get())
+        if len(str(self.result)[str(self.result).find('.'):len(str(self.result)) + 1]) == 2 and (str(self.result)[str(self.result).find('.') + 1] == '0'):
+            self.result = int(self.result)
+            self.screenNumber.set(self.result)
+            self.flag_result = True
+        else:
+            self.screenNumber.set(self.result)
+            self.flag_result = True
+        self.operation = 'division'
+
 
     #----------------------the_result method------------------
     def the_result(self):
         if self.result == 0:
             pass
         elif self.operation == "":
-            self.acumulated_result(float(self.screenNumber.get()))
+            self.result += float(self.screenNumber.get())
             self.screenNumber.set(self.result)
         elif self.operation == "addition":
             self.result += float(self.screenNumber.get())
@@ -145,29 +170,31 @@ class Functions():
         elif self.operation == "subtraction":
             self.result -= float(self.screenNumber.get())
             if len(str(self.result)[str(self.result).find('.'):len(str(self.result)) + 1]) == 2 and (str(self.result)[str(self.result).find('.') + 1] == '0'):
+                self.result = int(self.result)
+                self.screenNumber.set(self.result)
+                self.flag_result = True
+            else:
+                self.screenNumber.set(self.result)
+                self.flag_result = True
+        elif self.operation == "multiplication":
+            self.result = self.result * float(self.screenNumber.get())
+            if len(str(self.result)[str(self.result).find('.'):len(str(self.result)) + 1]) == 2 and (str(self.result)[str(self.result).find('.') + 1] == '0'):
                 self.screenNumber.set(round(self.result))
                 self.flag_result = True
             else:
                 self.screenNumber.set(self.result)
                 self.flag_result = True
-        # elif self.operation == "multiplication":
-        #     self.result = self.result * float(self.result * float(self.screenNumber.get()))
-        #     if len(str(self.result)[str(self.result).find('.'):len(str(self.result)) + 1]) == 2 and (str(self.result)[str(self.result).find('.') + 1] == '0'):
-        #         self.screenNumber.set(round(self.result))
-        #         self.flag_result = True
-        #     else:
-        #         self.screenNumber.set(self.result)
-        #         self.flag_result = True
             
-        # elif self.operation == "division":
-        #     self.result /= float(self.screenNumber.get())
-        #     if len(str(self.result)[str(self.result).find('.'):len(str(self.result)) + 1]) == 2 and (str(self.result)[str(self.result).find('.') + 1] == '0'):
-        #         self.screenNumber.set(round(self.result))
-        #     else:
-        #         self.screenNumber.set(self.result)
-        self.result = 0
-        #self.operation = ''
-        #pass
+        elif self.operation == "division":
+            self.result /= float(self.screenNumber.get())
+            if len(str(self.result)[str(self.result).find('.'):len(str(self.result)) + 1]) == 2 and (str(self.result)[str(self.result).find('.') + 1] == '0'):
+                self.screenNumber.set(round(self.result))
+                self.flag_result = True
+            else:
+                self.screenNumber.set(self.result)
+                self.flag_result = True
+        #self.result = 0
+        self.operation = ''
 
     def result_is_int(self):
         return True if type(self.result) == 'int' else False
