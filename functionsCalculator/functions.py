@@ -47,108 +47,46 @@ class Functions():
             if self.result == 0:
                 self.operation = ""
                 self.flag_result = False
+    
+    def selector(self, operation:str):
+        self.flag_screen = True
+        if self.operation == '':
+            if self.result == 0:
+                self.result += float(self.screenNumber.get())
+            self.operation == operation
+        elif self.operation == 'addition':
+            self.result += float(self.screenNumber.get())
+        elif self. operation == 'subtraction':
+            self.result -= float(self.screenNumber.get())
+        elif self. operation == 'multiplication':
+            self.result *= float(self.screenNumber.get())
+        elif self. operation == 'division':
+            self.result /= float(self.screenNumber.get())
+        if len(str(self.result)[str(self.result).find('.'):len(str(self.result)) + 1]) == 2 and (str(self.result)[str(self.result).find('.') + 1] == '0'):
+            self.result = int(self.result)
+            self.screenNumber.set(self.result)
+            self.flag_result = True
+        else:
+            self.screenNumber.set(self.result)
+            self.flag_result = True
+        self.operation = operation
 
     #-----------------------addition method-----------------------
     def addition(self, num:str):
-        self.flag_screen = True
-        if self.operation == '':
-            if self.result == 0:
-                self.result += float(self.screenNumber.get())
-            self.operation == 'addition'
-        elif self.operation == 'addition':
-            self.result += float(self.screenNumber.get())
-        elif self. operation == 'subtraction':
-            self.result -= float(self.screenNumber.get())
-        elif self. operation == 'multiplication':
-            self.result *= float(self.screenNumber.get())
-        elif self. operation == 'division':
-            self.result /= float(self.screenNumber.get())
-        if len(str(self.result)[str(self.result).find('.'):len(str(self.result)) + 1]) == 2 and (str(self.result)[str(self.result).find('.') + 1] == '0'):
-            self.result = int(self.result)
-            self.screenNumber.set(self.result)
-            self.flag_result = True
-        else:
-            self.screenNumber.set(self.result)
-            self.flag_result = True
-        self.operation = "addition"
-
+        self.selector('addition')
 
     #-----------------------sustraction method-----------------
     def subtraction(self, num):
-        self.flag_screen = True
-        if self.operation == '':
-            if self.result == 0:
-                self.result += float(self.screenNumber.get())
-            self.operation = 'subtraction'
-            #self.result += float(self.screenNumber.get())
-        elif self.operation == 'addition':
-            self.result += float(self.screenNumber.get())
-        elif self. operation == 'subtraction':
-            self.result -= float(self.screenNumber.get())
-        elif self. operation == 'multiplication':
-            self.result *= float(self.screenNumber.get())
-        elif self. operation == 'division':
-            self.result /= float(self.screenNumber.get())
-
-        if len(str(self.result)[str(self.result).find('.'):len(str(self.result)) + 1]) == 2 and (str(self.result)[str(self.result).find('.') + 1] == '0'):
-            self.result = int(self.result)
-            self.screenNumber.set(self.result)
-            self.flag_result = True
-        else:
-            self.screenNumber.set(self.result)
-            self.flag_result = True
-
-        self.operation = "subtraction"
+        self.selector('subtraction')
 
 
     #-----------------------multiplication method--------------
     def multiplication(self, num):
-        self.flag_screen = True
-        if self.operation == '':
-            if self.result == 0:
-                self.result += float(self.screenNumber.get())
-            self.operation = 'multiplication'
-        elif self.operation == 'addition':
-            self.result += float(self.screenNumber.get())
-        elif self. operation == 'subtraction':
-            self.result -= float(self.screenNumber.get())
-        elif self. operation == 'multiplication':
-            self.result *= float(self.screenNumber.get())
-        elif self. operation == 'division':
-            self.result /= float(self.screenNumber.get())
-        if len(str(self.result)[str(self.result).find('.'):len(str(self.result)) + 1]) == 2 and (str(self.result)[str(self.result).find('.') + 1] == '0'):
-            self.result = int(self.result)
-            self.screenNumber.set(self.result)
-            self.flag_result = True
-        else:
-            self.screenNumber.set(self.result)
-            self.flag_result = True
-
-        self.operation = "multiplication"
+        self.selector('multiplication')
 
     #-----------------------division method--------------------
     def division(self, num):
-        self.flag_screen = True
-        if self.operation == '':
-            if self.result == 0:
-                self.result += float(self.screenNumber.get())
-                self.operation = "division"
-        elif self.operation == 'addition':
-            self.result += float(self.screenNumber.get())
-        elif self. operation == 'subtraction':
-            self.result -= float(self.screenNumber.get())
-        elif self. operation == 'multiplication':
-            self.result *= float(self.screenNumber.get())
-        elif self. operation == 'division':
-            self.result /= float(self.screenNumber.get())
-        if len(str(self.result)[str(self.result).find('.'):len(str(self.result)) + 1]) == 2 and (str(self.result)[str(self.result).find('.') + 1] == '0'):
-            self.result = int(self.result)
-            self.screenNumber.set(self.result)
-            self.flag_result = True
-        else:
-            self.screenNumber.set(self.result)
-            self.flag_result = True
-        self.operation = 'division'
+        self.selector('division')
 
 
     #----------------------the_result method------------------
