@@ -77,33 +77,3 @@ class Calculator():
         button_sum.grid(row=4, column=5, rowspan=2)
 
         root.mainloop()
-
-# if __name__ == "__main__":
-#     root.mainloop()
-
-"""#----------------------------pulsaciones teclado-----------
-
-def numeroPulsado(num: str):
-    global operation
-
-    if operation != "":
-        screenNumber.set(num)
-        operation = ""
-    else:
-        screenNumber.set(screenNumber.get() + num)
-        
-#-----------------------función suma-----------------------
-def suma(num):
-    global operation
-    global result
-    result += int(num)
-    operation = "suma"
-    screenNumber.set(result)
-
-#------------Función el_resultado----------------------------
-def el_resultado():
-    global result
-    screenNumber.set(result + int(screenNumber.get()))
-
-    result = 0
-"""
