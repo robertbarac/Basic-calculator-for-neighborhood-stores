@@ -89,6 +89,14 @@ class Functions():
         self.selector('division')
 
 
+    def print_in_screen(self):
+        if len(str(self.result)[str(self.result).find('.'):len(str(self.result)) + 1]) == 2 and (str(self.result)[str(self.result).find('.') + 1] == '0'):
+            self.screenNumber.set(round(self.result))
+            self.flag_result = True
+        else:
+            self.screenNumber.set(self.result)
+            self.flag_result = True
+
     #----------------------the_result method------------------
     def the_result(self):
         if self.result == 0:
@@ -98,41 +106,36 @@ class Functions():
             self.screenNumber.set(self.result)
         elif self.operation == "addition":
             self.result += float(self.screenNumber.get())
-            if len(str(self.result)[str(self.result).find('.'):len(str(self.result)) + 1]) == 2 and (str(self.result)[str(self.result).find('.') + 1] == '0'):
-                self.screenNumber.set(round(self.result))
-                self.flag_result = True
-            else:
-                self.screenNumber.set(self.result)
-                self.flag_result = True
+            self.print_in_screen()
             
         elif self.operation == "subtraction":
             self.result -= float(self.screenNumber.get())
-            if len(str(self.result)[str(self.result).find('.'):len(str(self.result)) + 1]) == 2 and (str(self.result)[str(self.result).find('.') + 1] == '0'):
-                self.result = int(self.result)
-                self.screenNumber.set(self.result)
-                self.flag_result = True
-            else:
-                self.screenNumber.set(self.result)
-                self.flag_result = True
+            self.print_in_screen()
         elif self.operation == "multiplication":
             self.result = self.result * float(self.screenNumber.get())
-            if len(str(self.result)[str(self.result).find('.'):len(str(self.result)) + 1]) == 2 and (str(self.result)[str(self.result).find('.') + 1] == '0'):
-                self.screenNumber.set(round(self.result))
-                self.flag_result = True
-            else:
-                self.screenNumber.set(self.result)
-                self.flag_result = True
+            self.print_in_screen()
             
         elif self.operation == "division":
             self.result /= float(self.screenNumber.get())
-            if len(str(self.result)[str(self.result).find('.'):len(str(self.result)) + 1]) == 2 and (str(self.result)[str(self.result).find('.') + 1] == '0'):
-                self.screenNumber.set(round(self.result))
-                self.flag_result = True
-            else:
-                self.screenNumber.set(self.result)
-                self.flag_result = True
-        #self.result = 0
+            self.print_in_screen()
         self.operation = ''
+    
+    def square_root(self):
+        if int(self.screenNumber.get()) == 0:
+            self.screenNumber.set('0')
+        else:
+            self.sqrt = float(self.screenNumber.get() ** (0.5))
+            self.result = self.sqrt
+            self.print_in_screen()
+
+    def percentage(self):
+        if self.screenNumber.get() == '0':
+            self.screenNumber.set('0')
+        else:
+            self.prctg = self.result * (float(self.screenNumber.get()) / 100)
+            self.result = self.prctg
+            self.print_in_screen()
+
 
     def result_is_int(self):
         return True if type(self.result) == 'int' else False
@@ -161,4 +164,3 @@ class Functions():
         self.operation = ''
         self.flag_result = False
         self.flag_screen = False
-        #pass

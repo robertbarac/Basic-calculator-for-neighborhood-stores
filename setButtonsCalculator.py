@@ -27,9 +27,9 @@ class Calculator():
         button_8.grid(row=2, column=3)
         button_9 = Button(myFrame, text="9", pady=10, width=3, command=lambda:functions_pack.number_pressed("9"))
         button_9.grid(row=2, column=4)
-        percentage_button = Button(myFrame, text="%", pady=10, width=3)
+        percentage_button = Button(myFrame, text="%", pady=10, width=3, command=lambda:functions_pack.percentage())
         percentage_button.grid(row=2, column=5)
-        square_root_button = Button(myFrame, text="√", pady=10, width=3)
+        square_root_button = Button(myFrame, text="√", pady=10, width=3, command=lambda:functions_pack.square_root())
         square_root_button.grid(row=2, column=6)
 
 
