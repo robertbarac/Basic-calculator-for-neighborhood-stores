@@ -12,7 +12,7 @@ class Calculator():
         #Create the object 
         functions_pack = Functions()
         # # --------------------Screen--------------------------
-        screen = Entry(myFrame, textvariable=functions_pack.screenNumber)
+        screen = Entry(myFrame, textvariable=functions_pack.screen_number)
         screen.grid(row=0, column=1, padx=5, pady=5, columnspan=6, sticky= W + E)
 
         screen.config(background="black", fg="#03f943", justify="right")
@@ -43,9 +43,9 @@ class Calculator():
         button_5.grid(row=3, column=3)
         button_6 = Button(myFrame, text="6", pady=10, width=3, command=lambda:functions_pack.number_pressed("6"))
         button_6.grid(row=3, column=4)
-        button_mult = Button(myFrame, text="X", pady=10, width=3, command=lambda:functions_pack.multiplication(functions_pack.screenNumber.get()))
+        button_mult = Button(myFrame, text="X", pady=10, width=3, command=lambda:functions_pack.multiplication(functions_pack.screen_number.get()))
         button_mult.grid(row=3, column=5)
-        button_div = Button(myFrame, text="÷", pady=10, width=3, command=lambda:functions_pack.division(functions_pack.screenNumber.get()))
+        button_div = Button(myFrame, text="÷", pady=10, width=3, command=lambda:functions_pack.division(functions_pack.screen_number.get()))
         button_div.grid(row=3, column=6)
 
         #-------------------Row 3----------------------------------
@@ -58,7 +58,7 @@ class Calculator():
         button_2.grid(row=4, column=3)
         button_3 = Button(myFrame, text="3", pady=10, width=3, command=lambda:functions_pack.number_pressed("3"))
         button_3.grid(row=4, column=4)
-        button_rest = Button(myFrame, text="-", pady=10, width=3, command=lambda:functions_pack.subtraction(functions_pack.screenNumber.get()))
+        button_rest = Button(myFrame, text="-", pady=10, width=3, command=lambda:functions_pack.subtraction(functions_pack.screen_number.get()))
         button_rest.grid(row=4, column=6)
 
         #---------------------Row 4---------------------------------
@@ -73,7 +73,7 @@ class Calculator():
         button_dot.grid(row=5, column=4)
         button_equals = Button(myFrame, text="=", pady=10, width=3, command=lambda:functions_pack.the_result())
         button_equals.grid(row=5, column=6)
-        button_sum = Button(myFrame, text="+", pady=30, width=3, command=lambda:functions_pack.addition(functions_pack.screenNumber.get()))
+        button_sum = Button(myFrame, text="+", pady=30, width=3, command=lambda:functions_pack.addition(functions_pack.screen_number.get()))
         button_sum.grid(row=4, column=5, rowspan=2)
 
         root.mainloop()
